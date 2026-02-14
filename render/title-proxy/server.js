@@ -73,6 +73,71 @@ app.post('/summarize-title', async (req, res) => {
   }
 });
 
+app.post('/draft-answer', async (req, res) => {
+  try {
+    if (!OPENAI_API_KEY) {
+      return res.status(500).json({ error: 'OPENAI_API_KEY is not set' });
+    }
+
+    if (PROXY_TOKEN) {
+      const token = req.header('x-proxy-token') || '';
+      if (token !== PROXY_TOKEN) {
+        return res.status(401).json({ error: 'Unauthorized' });
+      }
+    }
+
+    const question = clean(req.body && req.body.question);
+    if (!question) {
+      return res.status(400).json({ error: 'question is required' });
+    }
+
+    const template = clean(req.body && req.body.template) || '';
+    const candidates = Array.isArray(req.body && req.body.candidates) ? req.body.candidates.slice(0, 8) : [];
+    const referenceText = candidates
+      .map((c, i) => `#${i + 1}\n質問: ${clean(c.question)}\n回答: ${clean(c.answer)}`)
+      .join('\n\n');
+
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${OPENAI_API_KEY}`,
+      },
+      body: JSON.stringify({
+        model: OPENAI_MODEL,
+        temperature: 0.3,
+        max_tokens: 900,
+        messages: [
+          {
+            role: 'system',
+            content:
+              'あなたはカスタマーサポートの返信文作成アシスタントです。入力された質問と参考回答から、丁寧で実務的な回答文を1通作成します。日本語で出力し、不要な注釈は書かず、テンプレート構成に沿って返してください。',
+          },
+          {
+            role: 'user',
+            content: `以下の質問に回答文を作成してください。\n\n質問:\n${question}\n\n参考回答（類似）:\n${referenceText || 'なし'}\n\nテンプレート:\n${template}\n\n要件:\n- テンプレートの文体・構成を維持する\n- 「> 質問内容」には質問を引用する\n- 「回答内容」は質問に合わせて具体化する\n- 参考回答をそのままコピペせず、今回の質問向けに調整する`,
+          },
+        ],
+      }),
+    });
+
+    if (!response.ok) {
+      const body = await response.text();
+      return res.status(502).json({ error: 'OpenAI request failed', detail: body });
+    }
+
+    const json = await response.json();
+    const answer = clean(json?.choices?.[0]?.message?.content || '');
+    if (!answer) {
+      return res.status(502).json({ error: 'Empty draft result' });
+    }
+
+    res.json({ answer });
+  } catch (err) {
+    res.status(500).json({ error: err && err.message ? err.message : 'unknown error' });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`title-summary-proxy listening on :${PORT}`);
 });

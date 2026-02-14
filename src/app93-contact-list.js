@@ -17,8 +17,21 @@
   const CLIENT_NO = 'client_no';
   const CLIENT_NAME = 'client_name';
   const CREATE_TIME = '作成日時';
-  const TITLE_SUMMARY_ENDPOINT = 'https://YOUR-RENDER-SERVICE.onrender.com/summarize-title';
-  const TITLE_SUMMARY_PROXY_TOKEN = '';
+  const TITLE_SUMMARY_ENDPOINT = 'https://sotobaco-kintone.onrender.com/summarize-title';
+  const ANSWER_DRAFT_ENDPOINT = 'https://sotobaco-kintone.onrender.com/draft-answer';
+  const TITLE_SUMMARY_PROXY_TOKEN = 'sbk_20260214_proxy_7f9d2a6c1e8b4d03a75c91f2e6b8ad44';
+  const ANSWER_TEMPLATE = `早速ではございますが、お問い合わせいただきました件について回答いたします。
+
+> 質問内容
+
+回答内容
+
+ご質問の回答は以上となります。
+他にご不明点やお困り事等がございましたら、お気軽にお問い合わせくださいませ。
+また、ソトバコポータルには無料でご利用いただけるフリープランもございますので、
+ぜひ一度お試しいただけますと幸いでございます。
+
+引き続き何卒よろしくお願い申し上げます。`;
 
   const MIN_SEQ_DIGITS = 3;
   const STYLE_ID = 'app93-contact-list-style';
@@ -36,6 +49,11 @@
       .replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;')
       .replace(/'/g, '&#39;');
+  const decodeHtmlEntities = (value) => {
+    const el = document.createElement('textarea');
+    el.innerHTML = text(value);
+    return el.value;
+  };
   const summaryState = {
     seq: 0,
     lastSource: '',
@@ -329,6 +347,15 @@
         font-size: 12px;
         cursor: pointer;
       }
+      #${WRAP_ID} .cl93-btn-ai {
+        border: 1px solid #5f6ad4;
+        background: #f5f6ff;
+        color: #3943a7;
+        border-radius: 8px;
+        padding: 7px 10px;
+        font-size: 12px;
+        cursor: pointer;
+      }
       .cl93-client-btn {
         border: 0;
         background: #0d8b66;
@@ -394,8 +421,12 @@
         font-size: 13px;
         font-family: inherit;
       }
+      #${WRAP_ID} input[data-k="answer_associate_input"] {
+        width: 350px;
+        max-width: 100%;
+      }
       #${WRAP_ID} .cl93-item textarea {
-        min-height: 90px;
+        min-height: 300px;
         resize: vertical;
       }
       #${WRAP_ID} .cl93-user-wrap { position: relative; }
@@ -434,8 +465,46 @@
         font-size: 12px;
         background: #fcfdff;
       }
+      #${WRAP_ID} .cl93-ro-list {
+        display: grid;
+        gap: 10px;
+      }
+      #${WRAP_ID} .cl93-ro-card {
+        background: #fff;
+        border: 1px solid #d8e3ef;
+        border-radius: 10px;
+        padding: 10px;
+      }
+      #${WRAP_ID} .cl93-ro-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px 12px;
+      }
+      #${WRAP_ID} .cl93-ro-item dt {
+        margin: 0 0 2px;
+        font-size: 11px;
+        color: #6a7b8b;
+      }
+      #${WRAP_ID} .cl93-ro-item dd {
+        margin: 0;
+        font-size: 13px;
+        color: #1f2e3b;
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+      }
+      #${WRAP_ID} .cl93-ro-full {
+        grid-column: 1 / -1;
+      }
+      #${WRAP_ID} .cl93-ro-wide {
+        grid-column: span 2;
+      }
+      #${WRAP_ID} .cl93-ro-no-break dd {
+        white-space: nowrap;
+        overflow-wrap: normal;
+        word-break: keep-all;
+      }
       @media (max-width: 900px) {
-        #${WRAP_ID} .cl93-grid { grid-template-columns: 1fr; }
+        #${WRAP_ID} .cl93-grid, #${WRAP_ID} .cl93-ro-grid { grid-template-columns: 1fr; }
       }
     `;
     document.head.appendChild(style);
@@ -449,7 +518,10 @@
       <section class="cl93-row" data-row>
         <div class="cl93-row-top">
           <div class="cl93-branch">枝番 ${branch}</div>
-          <button type="button" class="cl93-btn-sub" data-action="remove">削除</button>
+          <div style="display:flex; gap:8px;">
+            <button type="button" class="cl93-btn-ai" data-action="draft-answer">AI回答案</button>
+            <button type="button" class="cl93-btn-sub" data-action="remove">削除</button>
+          </div>
         </div>
         <div class="cl93-grid">
           <div class="cl93-item">
@@ -553,7 +625,7 @@
     return records.map((rec) => ({
       question_date: text(rec?.[QUESTION_DATE]?.value),
       status: text(rec?.[STATUS]?.value) || '未回答',
-      question_detail: text(rec?.[QUESTION_DETAIL]?.value).replace(/<[^>]*>/g, ' ').trim(),
+      question_detail: decodeHtmlEntities(text(rec?.[QUESTION_DETAIL]?.value).replace(/<[^>]*>/g, ' ')).trim(),
       answer_date: text(rec?.[ANSWER_DATE]?.value),
       answer_associate_code:
         Array.isArray(rec?.[ANSWER_ASSOCIATE]?.value) && rec[ANSWER_ASSOCIATE].value.length
@@ -563,7 +635,7 @@
         Array.isArray(rec?.[ANSWER_ASSOCIATE]?.value) && rec[ANSWER_ASSOCIATE].value.length
           ? text(rec[ANSWER_ASSOCIATE].value[0].code)
           : '',
-      answer_detail: text(rec?.[ANSWER_DETAIL]?.value).replace(/<[^>]*>/g, ' ').trim(),
+      answer_detail: decodeHtmlEntities(text(rec?.[ANSWER_DETAIL]?.value).replace(/<[^>]*>/g, ' ')).trim(),
     }));
   };
 
@@ -616,6 +688,78 @@
       await kintone.api(kintone.api.url('/k/v1/records', true), 'POST', {
         app: DETAIL_APP_ID,
         records: group,
+      });
+    }
+  };
+
+  const splitKeywords = (s) =>
+    text(s)
+      .toLowerCase()
+      .split(/[ 　\n\r\t、。,.!！?？:：;；()（）\[\]【】「」"']/)
+      .map((w) => w.trim())
+      .filter((w) => w.length >= 2)
+      .slice(0, 20);
+
+  const scoreByKeywords = (question, target) => {
+    const keys = splitKeywords(question);
+    if (!keys.length) return 0;
+    const t = text(target).toLowerCase();
+    let score = 0;
+    keys.forEach((k) => {
+      if (t.includes(k)) score += 1;
+    });
+    return score;
+  };
+
+  const fetchAnswerCandidates = async (questionText) => {
+    const res = await fetchRecords(
+      DETAIL_APP_ID,
+      `${ANSWER_DETAIL} != "" order by 更新日時 desc limit 200`,
+      [QUESTION_DETAIL, ANSWER_DETAIL]
+    );
+    const records = res.records || [];
+    const candidates = records
+      .map((r) => ({
+        question: decodeHtmlEntities(text(r?.[QUESTION_DETAIL]?.value).replace(/<[^>]*>/g, ' ')).trim(),
+        answer: decodeHtmlEntities(text(r?.[ANSWER_DETAIL]?.value).replace(/<[^>]*>/g, ' ')).trim(),
+      }))
+      .filter((x) => x.question && x.answer)
+      .map((x) => ({
+        ...x,
+        score: scoreByKeywords(questionText, x.question),
+      }))
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 8)
+      .map(({ question, answer }) => ({ question, answer }));
+    return candidates;
+  };
+
+  const requestDraftAnswer = async ({ question, candidates }) => {
+    const headers = { 'Content-Type': 'application/json' };
+    if (TITLE_SUMMARY_PROXY_TOKEN) headers['x-proxy-token'] = TITLE_SUMMARY_PROXY_TOKEN;
+    const body = JSON.stringify({
+      question,
+      candidates,
+      template: ANSWER_TEMPLATE,
+    });
+    const [resBody, status] = await kintone.proxy(ANSWER_DRAFT_ENDPOINT, 'POST', headers, body);
+    if (Number(status) < 200 || Number(status) >= 300) {
+      throw new Error('回答案生成APIの呼び出しに失敗しました。');
+    }
+    const parsed = typeof resBody === 'string' ? JSON.parse(resBody) : resBody;
+    const draft = text(parsed && parsed.answer).trim();
+    if (!draft) throw new Error('回答案が生成されませんでした。');
+    return draft;
+  };
+
+  const deleteDetailsByQuestionId = async (questionId) => {
+    const qid = text(questionId).trim();
+    if (!qid) return;
+    const ids = await fetchDetailIds(qid);
+    for (const group of chunk(ids, 100)) {
+      await kintone.api(kintone.api.url('/k/v1/records', true), 'DELETE', {
+        app: DETAIL_APP_ID,
+        ids: group,
       });
     }
   };
@@ -746,6 +890,31 @@
         hidden.value = code;
         menu.style.display = 'none';
       }
+
+      if (target.dataset.action === 'draft-answer') {
+        const row = target.closest('[data-row]');
+        if (!row) return;
+        const q = row.querySelector('[data-k="question_detail"]');
+        const a = row.querySelector('[data-k="answer_detail"]');
+        if (!(q instanceof HTMLTextAreaElement) || !(a instanceof HTMLTextAreaElement)) return;
+        const question = text(q.value).trim();
+        if (!question) {
+          window.alert('先に「問い合わせ内容」を入力してください。');
+          return;
+        }
+        target.setAttribute('disabled', 'true');
+        (async () => {
+          try {
+            const candidates = await fetchAnswerCandidates(question);
+            const draft = await requestDraftAnswer({ question, candidates });
+            a.value = draft;
+          } catch (err) {
+            window.alert(err && err.message ? err.message : '回答案の生成に失敗しました。');
+          } finally {
+            target.removeAttribute('disabled');
+          }
+        })();
+      }
     });
 
     wrap.addEventListener('input', (e) => {
@@ -792,6 +961,70 @@
       if (!rootEl) return;
       if (!rootEl.contains(target)) closeMenus();
     });
+  };
+
+  const mountReadonlyDetails = async (event) => {
+    if (kintone.app.getId() !== APP_ID) return;
+    ensureStyle();
+
+    const root =
+      kintone.app.record.getSpaceElement(SPACE_CODE) ||
+      kintone.app.record.getHeaderMenuSpaceElement();
+    if (!root) return;
+
+    const qid = text(event.record?.[QUESTION_ID]?.value).trim();
+    const rows = await fetchDetailRows(qid);
+
+    const toSafe = (v) => h(text(v || '-'));
+    const toSafeWithLinks = (v) => {
+      const s = text(v || '-');
+      const re = /https?:\/\/[^\s<>"']+/g;
+      let out = '';
+      let last = 0;
+      let m;
+      while ((m = re.exec(s)) !== null) {
+        const url = m[0];
+        out += h(s.slice(last, m.index));
+        out += `<a href="${h(url)}" target="_blank" rel="noopener noreferrer">${h(url)}</a>`;
+        last = m.index + url.length;
+      }
+      out += h(s.slice(last));
+      return out || '-';
+    };
+    const cards = rows
+      .map((r, i) => {
+        const assoc = r.answer_associate_code ? userDisplay(r.answer_associate_code) : '-';
+        return `
+          <section class="cl93-ro-card">
+            <div class="cl93-row-top" style="margin-bottom:8px;">
+              <div class="cl93-branch">枝番 ${i + 1}</div>
+            </div>
+            <dl class="cl93-ro-grid">
+              <div class="cl93-ro-item"><dt>問い合わせ日付</dt><dd>${toSafe(r.question_date)}</dd></div>
+              <div class="cl93-ro-item"><dt>ステータス</dt><dd>${toSafe(r.status)}</dd></div>
+              <div class="cl93-ro-item cl93-ro-full"><dt>問い合わせ内容</dt><dd>${toSafeWithLinks(r.question_detail)}</dd></div>
+              <div class="cl93-ro-item"><dt>回答日付</dt><dd>${toSafe(r.answer_date)}</dd></div>
+              <div class="cl93-ro-item cl93-ro-wide cl93-ro-no-break"><dt>回答者</dt><dd>${toSafe(assoc)}</dd></div>
+              <div class="cl93-ro-item cl93-ro-full"><dt>回答内容</dt><dd>${toSafeWithLinks(r.answer_detail)}</dd></div>
+            </dl>
+          </section>
+        `;
+      })
+      .join('');
+
+    root.innerHTML = `
+      <section id="${WRAP_ID}">
+        <div class="cl93-head">
+          <div>
+            <div class="cl93-title">問い合わせ明細（アプリ94）</div>
+            <div class="cl93-sub">詳細画面は読み取り専用です</div>
+          </div>
+        </div>
+        <div class="cl93-ro-list">
+          ${cards || '<div class="cl93-empty">問い合わせ明細はありません。</div>'}
+        </div>
+      </section>
+    `;
   };
 
   const mountClientAddButton = () => {
@@ -893,11 +1126,20 @@
     tick();
   };
 
-  kintone.events.on(['app.record.create.show', 'app.record.edit.show', 'app.record.index.edit.show'], (event) => {
+  kintone.events.on(
+    ['app.record.create.show', 'app.record.edit.show', 'app.record.index.edit.show', 'app.record.detail.show'],
+    (event) => {
     if (kintone.app.getId() !== APP_ID) return event;
     if (event.record && event.record[QUESTION_ID]) {
       event.record[QUESTION_ID].disabled = true;
     }
+    if (event.type === 'app.record.detail.show') {
+      mountReadonlyDetails(event).catch((err) => {
+        console.error('[app93-contact-list] detail mount failed', err);
+      });
+      return event;
+    }
+
     if (event.type !== 'app.record.index.edit.show') {
       mount(event).catch((err) => {
         console.error('[app93-contact-list] mount failed', err);
@@ -927,6 +1169,21 @@
       return event;
     } catch (err) {
       event.error = err && err.message ? err.message : '問い合わせ管理の保存処理に失敗しました。';
+      return event;
+    }
+  });
+
+  kintone.events.on(['app.record.detail.delete.submit', 'app.record.index.delete.submit'], async (event) => {
+    if (kintone.app.getId() !== APP_ID) return event;
+    try {
+      const qid = text(event?.record?.[QUESTION_ID]?.value).trim();
+      await deleteDetailsByQuestionId(qid);
+      return event;
+    } catch (err) {
+      event.error =
+        err && err.message
+          ? `関連する問い合わせ明細の削除に失敗しました: ${err.message}`
+          : '関連する問い合わせ明細の削除に失敗しました。';
       return event;
     }
   });
