@@ -1,0 +1,14 @@
+{
+  "app": "93",
+  "scope": "ALL",
+  "desktop": {
+    "js": [
+      "src/app93-contact-list.js"
+    ],
+    "css": []
+  },
+  "mobile": {
+    "js": [],
+    "css": []
+  }
+}

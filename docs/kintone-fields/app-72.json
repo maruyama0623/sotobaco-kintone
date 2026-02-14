@@ -1,0 +1,262 @@
+{
+  "app": {
+    "id": 72,
+    "name": "問い合わせ明細"
+  },
+  "fetchedAt": "2026-02-14T04:39:07.766Z",
+  "revision": "42",
+  "properties": {
+    "client_unregistered": {
+      "type": "SINGLE_LINE_TEXT",
+      "code": "client_unregistered",
+      "label": "問い合わせ会社名（顧客未登録分）",
+      "noLabel": false,
+      "required": false,
+      "minLength": "",
+      "maxLength": "",
+      "expression": "",
+      "hideExpression": false,
+      "unique": false,
+      "defaultValue": ""
+    },
+    "レコード番号": {
+      "type": "RECORD_NUMBER",
+      "code": "レコード番号",
+      "label": "レコード番号",
+      "noLabel": false
+    },
+    "作業者": {
+      "type": "STATUS_ASSIGNEE",
+      "code": "作業者",
+      "label": "作業者",
+      "enabled": false
+    },
+    "更新者": {
+      "type": "MODIFIER",
+      "code": "更新者",
+      "label": "更新者",
+      "noLabel": false
+    },
+    "作成者": {
+      "type": "CREATOR",
+      "code": "作成者",
+      "label": "作成者",
+      "noLabel": false
+    },
+    "answer_date": {
+      "type": "DATE",
+      "code": "answer_date",
+      "label": "回答日付",
+      "noLabel": false,
+      "required": false,
+      "unique": false,
+      "defaultValue": "",
+      "defaultNowValue": true
+    },
+    "answer_associate": {
+      "type": "USER_SELECT",
+      "code": "answer_associate",
+      "label": "回答者（ソトバコ.）",
+      "noLabel": false,
+      "required": false,
+      "entities": [],
+      "defaultValue": [
+        {
+          "type": "FUNCTION",
+          "code": "LOGINUSER()"
+        }
+      ]
+    },
+    "answer_detail": {
+      "type": "RICH_TEXT",
+      "code": "answer_detail",
+      "label": "回答内容",
+      "noLabel": false,
+      "required": false,
+      "defaultValue": ""
+    },
+    "ステータス": {
+      "type": "STATUS",
+      "code": "ステータス",
+      "label": "ステータス",
+      "enabled": false
+    },
+    "question_date": {
+      "type": "DATE",
+      "code": "question_date",
+      "label": "問い合わせ日付",
+      "noLabel": false,
+      "required": false,
+      "unique": false,
+      "defaultValue": "",
+      "defaultNowValue": true
+    },
+    "memo": {
+      "type": "RICH_TEXT",
+      "code": "memo",
+      "label": "備考",
+      "noLabel": false,
+      "required": false,
+      "defaultValue": ""
+    },
+    "title": {
+      "type": "SINGLE_LINE_TEXT",
+      "code": "title",
+      "label": "タイトル",
+      "noLabel": false,
+      "required": true,
+      "minLength": "",
+      "maxLength": "",
+      "expression": "",
+      "hideExpression": false,
+      "unique": false,
+      "defaultValue": ""
+    },
+    "question_old": {
+      "type": "REFERENCE_TABLE",
+      "code": "question_old",
+      "label": "関連問い合わせ",
+      "noLabel": false,
+      "referenceTable": {
+        "relatedApp": {
+          "app": "72",
+          "code": ""
+        },
+        "condition": {
+          "field": "question_id",
+          "relatedField": "question_id"
+        },
+        "filterCond": "",
+        "displayFields": [
+          "question_date",
+          "question_detail",
+          "answer_detail"
+        ],
+        "sort": "question_date desc",
+        "size": "5"
+      }
+    },
+    "question_id": {
+      "type": "SINGLE_LINE_TEXT",
+      "code": "question_id",
+      "label": "問い合わせID",
+      "noLabel": false,
+      "required": false,
+      "minLength": "",
+      "maxLength": "",
+      "expression": "",
+      "hideExpression": false,
+      "unique": false,
+      "defaultValue": ""
+    },
+    "更新日時": {
+      "type": "UPDATED_TIME",
+      "code": "更新日時",
+      "label": "更新日時",
+      "noLabel": false
+    },
+    "inquirer_mail": {
+      "type": "LINK",
+      "code": "inquirer_mail",
+      "label": "問い合わせ者メールアドレス",
+      "noLabel": false,
+      "required": true,
+      "protocol": "MAIL",
+      "minLength": "",
+      "maxLength": "",
+      "unique": false,
+      "defaultValue": ""
+    },
+    "cilent": {
+      "type": "SINGLE_LINE_TEXT",
+      "code": "cilent",
+      "label": "問い合わせ会社名（顧客登録済み）",
+      "noLabel": false,
+      "required": false,
+      "lookup": {
+        "relatedApp": {
+          "app": "69",
+          "code": ""
+        },
+        "relatedKeyField": "client_name",
+        "fieldMappings": [],
+        "lookupPickerFields": [],
+        "filterCond": "",
+        "sort": "レコード番号 desc"
+      }
+    },
+    "カテゴリー": {
+      "type": "CATEGORY",
+      "code": "カテゴリー",
+      "label": "カテゴリー",
+      "enabled": false
+    },
+    "inquirer_name": {
+      "type": "SINGLE_LINE_TEXT",
+      "code": "inquirer_name",
+      "label": "問い合わせ者名",
+      "noLabel": false,
+      "required": true,
+      "minLength": "",
+      "maxLength": "",
+      "expression": "",
+      "hideExpression": false,
+      "unique": false,
+      "defaultValue": ""
+    },
+    "service": {
+      "type": "SINGLE_LINE_TEXT",
+      "code": "service",
+      "label": "対象サービス",
+      "noLabel": false,
+      "required": true,
+      "lookup": {
+        "relatedApp": {
+          "app": "70",
+          "code": ""
+        },
+        "relatedKeyField": "service_name",
+        "fieldMappings": [],
+        "lookupPickerFields": [],
+        "filterCond": "",
+        "sort": "レコード番号 asc"
+      }
+    },
+    "question_detail": {
+      "type": "RICH_TEXT",
+      "code": "question_detail",
+      "label": "問い合わせ内容",
+      "noLabel": false,
+      "required": true,
+      "defaultValue": ""
+    },
+    "作成日時": {
+      "type": "CREATED_TIME",
+      "code": "作成日時",
+      "label": "作成日時",
+      "noLabel": false
+    },
+    "status": {
+      "type": "DROP_DOWN",
+      "code": "status",
+      "label": "ステータス",
+      "noLabel": false,
+      "required": false,
+      "options": {
+        "回答済": {
+          "label": "回答済",
+          "index": "2"
+        },
+        "要調査": {
+          "label": "要調査",
+          "index": "1"
+        },
+        "未回答": {
+          "label": "未回答",
+          "index": "0"
+        }
+      },
+      "defaultValue": "未回答"
+    }
+  }
+}

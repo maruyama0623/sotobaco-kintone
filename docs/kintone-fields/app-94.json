@@ -1,0 +1,158 @@
+{
+  "app": {
+    "id": 94,
+    "name": "問い合わせ明細"
+  },
+  "fetchedAt": "2026-02-14T04:39:09.231Z",
+  "revision": "44",
+  "properties": {
+    "レコード番号": {
+      "type": "RECORD_NUMBER",
+      "code": "レコード番号",
+      "label": "レコード番号",
+      "noLabel": false
+    },
+    "作業者": {
+      "type": "STATUS_ASSIGNEE",
+      "code": "作業者",
+      "label": "作業者",
+      "enabled": false
+    },
+    "更新者": {
+      "type": "MODIFIER",
+      "code": "更新者",
+      "label": "更新者",
+      "noLabel": false
+    },
+    "作成者": {
+      "type": "CREATOR",
+      "code": "作成者",
+      "label": "作成者",
+      "noLabel": false
+    },
+    "answer_date": {
+      "type": "DATE",
+      "code": "answer_date",
+      "label": "回答日付",
+      "noLabel": false,
+      "required": false,
+      "unique": false,
+      "defaultValue": "",
+      "defaultNowValue": true
+    },
+    "answer_associate": {
+      "type": "USER_SELECT",
+      "code": "answer_associate",
+      "label": "回答者（ソトバコ.）",
+      "noLabel": false,
+      "required": false,
+      "entities": [],
+      "defaultValue": [
+        {
+          "type": "FUNCTION",
+          "code": "LOGINUSER()"
+        }
+      ]
+    },
+    "answer_detail": {
+      "type": "RICH_TEXT",
+      "code": "answer_detail",
+      "label": "回答内容",
+      "noLabel": false,
+      "required": false,
+      "defaultValue": ""
+    },
+    "ステータス": {
+      "type": "STATUS",
+      "code": "ステータス",
+      "label": "ステータス",
+      "enabled": false
+    },
+    "question_date": {
+      "type": "DATE",
+      "code": "question_date",
+      "label": "問い合わせ日付",
+      "noLabel": false,
+      "required": false,
+      "unique": false,
+      "defaultValue": "",
+      "defaultNowValue": true
+    },
+    "question_id": {
+      "type": "SINGLE_LINE_TEXT",
+      "code": "question_id",
+      "label": "問い合わせID",
+      "noLabel": false,
+      "required": false,
+      "minLength": "",
+      "maxLength": "",
+      "expression": "",
+      "hideExpression": false,
+      "unique": false,
+      "defaultValue": ""
+    },
+    "更新日時": {
+      "type": "UPDATED_TIME",
+      "code": "更新日時",
+      "label": "更新日時",
+      "noLabel": false
+    },
+    "カテゴリー": {
+      "type": "CATEGORY",
+      "code": "カテゴリー",
+      "label": "カテゴリー",
+      "enabled": false
+    },
+    "branch_number": {
+      "type": "NUMBER",
+      "code": "branch_number",
+      "label": "枝番",
+      "noLabel": false,
+      "required": false,
+      "minValue": "",
+      "maxValue": "",
+      "digit": false,
+      "unique": false,
+      "defaultValue": "",
+      "displayScale": "",
+      "unit": "",
+      "unitPosition": "BEFORE"
+    },
+    "question_detail": {
+      "type": "RICH_TEXT",
+      "code": "question_detail",
+      "label": "問い合わせ内容",
+      "noLabel": false,
+      "required": true,
+      "defaultValue": ""
+    },
+    "作成日時": {
+      "type": "CREATED_TIME",
+      "code": "作成日時",
+      "label": "作成日時",
+      "noLabel": false
+    },
+    "status": {
+      "type": "DROP_DOWN",
+      "code": "status",
+      "label": "ステータス",
+      "noLabel": false,
+      "required": false,
+      "options": {
+        "回答済": {
+          "label": "回答済",
+          "index": "2"
+        },
+        "要調査": {
+          "label": "要調査",
+          "index": "1"
+        },
+        "未回答": {
+          "label": "未回答",
+          "index": "0"
+        }
+      },
+      "defaultValue": "未回答"
+    }
+  }
+}

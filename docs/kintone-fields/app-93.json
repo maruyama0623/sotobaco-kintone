@@ -1,0 +1,220 @@
+{
+  "app": {
+    "id": 93,
+    "name": "問い合わせ管理"
+  },
+  "fetchedAt": "2026-02-14T04:39:09.162Z",
+  "revision": "46",
+  "properties": {
+    "client_search": {
+      "type": "SINGLE_LINE_TEXT",
+      "code": "client_search",
+      "label": "クライアント検索",
+      "noLabel": false,
+      "required": true,
+      "lookup": {
+        "relatedApp": {
+          "app": "69",
+          "code": ""
+        },
+        "relatedKeyField": "顧客CD_顧客名",
+        "fieldMappings": [
+          {
+            "field": "client_no",
+            "relatedField": "client_no"
+          },
+          {
+            "field": "client_name",
+            "relatedField": "client_name"
+          }
+        ],
+        "lookupPickerFields": [],
+        "filterCond": "",
+        "sort": "レコード番号 desc"
+      }
+    },
+    "レコード番号": {
+      "type": "RECORD_NUMBER",
+      "code": "レコード番号",
+      "label": "レコード番号",
+      "noLabel": false
+    },
+    "作業者": {
+      "type": "STATUS_ASSIGNEE",
+      "code": "作業者",
+      "label": "作業者",
+      "enabled": false
+    },
+    "更新者": {
+      "type": "MODIFIER",
+      "code": "更新者",
+      "label": "更新者",
+      "noLabel": false
+    },
+    "作成者": {
+      "type": "CREATOR",
+      "code": "作成者",
+      "label": "作成者",
+      "noLabel": false
+    },
+    "ステータス": {
+      "type": "STATUS",
+      "code": "ステータス",
+      "label": "ステータス",
+      "enabled": false
+    },
+    "question_date": {
+      "type": "DATE",
+      "code": "question_date",
+      "label": "問い合わせ日付",
+      "noLabel": false,
+      "required": false,
+      "unique": false,
+      "defaultValue": "",
+      "defaultNowValue": true
+    },
+    "memo": {
+      "type": "RICH_TEXT",
+      "code": "memo",
+      "label": "備考",
+      "noLabel": false,
+      "required": false,
+      "defaultValue": ""
+    },
+    "title": {
+      "type": "SINGLE_LINE_TEXT",
+      "code": "title",
+      "label": "タイトル",
+      "noLabel": false,
+      "required": true,
+      "minLength": "",
+      "maxLength": "",
+      "expression": "",
+      "hideExpression": false,
+      "unique": false,
+      "defaultValue": ""
+    },
+    "question_id": {
+      "type": "SINGLE_LINE_TEXT",
+      "code": "question_id",
+      "label": "問い合わせID",
+      "noLabel": false,
+      "required": false,
+      "minLength": "",
+      "maxLength": "",
+      "expression": "",
+      "hideExpression": false,
+      "unique": false,
+      "defaultValue": ""
+    },
+    "更新日時": {
+      "type": "UPDATED_TIME",
+      "code": "更新日時",
+      "label": "更新日時",
+      "noLabel": false
+    },
+    "inquirer_mail": {
+      "type": "LINK",
+      "code": "inquirer_mail",
+      "label": "問い合わせ者メールアドレス",
+      "noLabel": false,
+      "required": true,
+      "protocol": "MAIL",
+      "minLength": "",
+      "maxLength": "",
+      "unique": false,
+      "defaultValue": ""
+    },
+    "カテゴリー": {
+      "type": "CATEGORY",
+      "code": "カテゴリー",
+      "label": "カテゴリー",
+      "enabled": false
+    },
+    "inquirer_name": {
+      "type": "SINGLE_LINE_TEXT",
+      "code": "inquirer_name",
+      "label": "問い合わせ者名",
+      "noLabel": false,
+      "required": true,
+      "minLength": "",
+      "maxLength": "",
+      "expression": "",
+      "hideExpression": false,
+      "unique": false,
+      "defaultValue": ""
+    },
+    "client_no": {
+      "type": "SINGLE_LINE_TEXT",
+      "code": "client_no",
+      "label": "クライアントCD",
+      "noLabel": false,
+      "required": false,
+      "minLength": "",
+      "maxLength": "",
+      "expression": "",
+      "hideExpression": false,
+      "unique": false,
+      "defaultValue": ""
+    },
+    "service": {
+      "type": "SINGLE_LINE_TEXT",
+      "code": "service",
+      "label": "対象サービス",
+      "noLabel": false,
+      "required": true,
+      "lookup": {
+        "relatedApp": {
+          "app": "70",
+          "code": ""
+        },
+        "relatedKeyField": "service_name",
+        "fieldMappings": [],
+        "lookupPickerFields": [],
+        "filterCond": "",
+        "sort": "レコード番号 asc"
+      }
+    },
+    "client_name": {
+      "type": "SINGLE_LINE_TEXT",
+      "code": "client_name",
+      "label": "クライアント名",
+      "noLabel": false,
+      "required": false,
+      "minLength": "",
+      "maxLength": "",
+      "expression": "",
+      "hideExpression": false,
+      "unique": false,
+      "defaultValue": ""
+    },
+    "作成日時": {
+      "type": "CREATED_TIME",
+      "code": "作成日時",
+      "label": "作成日時",
+      "noLabel": false
+    },
+    "status": {
+      "type": "DROP_DOWN",
+      "code": "status",
+      "label": "ステータス",
+      "noLabel": false,
+      "required": false,
+      "options": {
+        "回答済": {
+          "label": "回答済",
+          "index": "2"
+        },
+        "要調査": {
+          "label": "要調査",
+          "index": "1"
+        },
+        "未回答": {
+          "label": "未回答",
+          "index": "0"
+        }
+      },
+      "defaultValue": "未回答"
+    }
+  }
+}

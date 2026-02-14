@@ -1,0 +1,135 @@
+{
+  "app": {
+    "id": 34,
+    "name": "全体アナウンス"
+  },
+  "fetchedAt": "2026-02-14T04:39:06.612Z",
+  "revision": "44",
+  "properties": {
+    "レコード番号": {
+      "type": "RECORD_NUMBER",
+      "code": "レコード番号",
+      "label": "レコード番号",
+      "noLabel": false
+    },
+    "作業者": {
+      "type": "STATUS_ASSIGNEE",
+      "code": "作業者",
+      "label": "作業者",
+      "enabled": false
+    },
+    "更新者": {
+      "type": "MODIFIER",
+      "code": "更新者",
+      "label": "更新者",
+      "noLabel": false
+    },
+    "作成者": {
+      "type": "CREATOR",
+      "code": "作成者",
+      "label": "作成者",
+      "noLabel": false
+    },
+    "ステータス": {
+      "type": "STATUS",
+      "code": "ステータス",
+      "label": "ステータス",
+      "enabled": false
+    },
+    "notice_person": {
+      "type": "USER_SELECT",
+      "code": "notice_person",
+      "label": "表示対象",
+      "noLabel": false,
+      "required": false,
+      "entities": [
+        {
+          "type": "USER",
+          "code": "maruyama.tomohiro@sotobaco.co.jp"
+        },
+        {
+          "type": "USER",
+          "code": "matsumoto.shiho@sotobaco.co.jp"
+        },
+        {
+          "type": "USER",
+          "code": "matsushita.akira@sotobaco.co.jp"
+        },
+        {
+          "type": "USER",
+          "code": "sano.shunsuke@sotobaco.co.jp"
+        },
+        {
+          "type": "USER",
+          "code": "nakashima.kaoru@sotobaco.co.jp"
+        }
+      ],
+      "defaultValue": []
+    },
+    "title": {
+      "type": "SINGLE_LINE_TEXT",
+      "code": "title",
+      "label": "タイトル",
+      "noLabel": false,
+      "required": true,
+      "minLength": "",
+      "maxLength": "",
+      "expression": "",
+      "hideExpression": false,
+      "unique": false,
+      "defaultValue": ""
+    },
+    "更新日時": {
+      "type": "UPDATED_TIME",
+      "code": "更新日時",
+      "label": "更新日時",
+      "noLabel": false
+    },
+    "カテゴリー": {
+      "type": "CATEGORY",
+      "code": "カテゴリー",
+      "label": "カテゴリー",
+      "enabled": false
+    },
+    "file": {
+      "type": "FILE",
+      "code": "file",
+      "label": "添付ファイル",
+      "noLabel": false,
+      "required": false,
+      "thumbnailSize": "50"
+    },
+    "contents": {
+      "type": "RICH_TEXT",
+      "code": "contents",
+      "label": "アナウンス内容",
+      "noLabel": false,
+      "required": true,
+      "defaultValue": ""
+    },
+    "category": {
+      "type": "DROP_DOWN",
+      "code": "category",
+      "label": "カテゴリ",
+      "noLabel": false,
+      "required": false,
+      "options": {
+        "リリース": {
+          "label": "リリース",
+          "index": "1"
+        },
+        "全社": {
+          "label": "全社",
+          "index": "0"
+        }
+      },
+      "defaultValue": "全社"
+    },
+    "作成日時": {
+      "type": "CREATED_TIME",
+      "code": "作成日時",
+      "label": "作成日時",
+      "noLabel": false
+    }
+  }
+}

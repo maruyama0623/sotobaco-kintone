@@ -1,0 +1,14 @@
+{
+  "app": "YOUR_APP_ID",
+  "scope": "ALL",
+  "desktop": {
+    "js": [
+      "src/sample.js"
+    ],
+    "css": []
+  },
+  "mobile": {
+    "js": [],
+    "css": []
+  }
+}

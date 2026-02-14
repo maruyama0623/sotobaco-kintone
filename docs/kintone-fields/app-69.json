@@ -1,0 +1,340 @@
+{
+  "app": {
+    "id": 69,
+    "name": "顧客管理"
+  },
+  "fetchedAt": "2026-02-14T04:39:07.051Z",
+  "revision": "93",
+  "properties": {
+    "レコード番号": {
+      "type": "RECORD_NUMBER",
+      "code": "レコード番号",
+      "label": "レコード番号",
+      "noLabel": false
+    },
+    "sotobaco_associate": {
+      "type": "USER_SELECT",
+      "code": "sotobaco_associate",
+      "label": "ソトバコ 担当者",
+      "noLabel": false,
+      "required": false,
+      "entities": [],
+      "defaultValue": []
+    },
+    "更新者": {
+      "type": "MODIFIER",
+      "code": "更新者",
+      "label": "更新者",
+      "noLabel": false
+    },
+    "ステータス": {
+      "type": "STATUS",
+      "code": "ステータス",
+      "label": "ステータス",
+      "enabled": false
+    },
+    "顧客CD_顧客名": {
+      "type": "SINGLE_LINE_TEXT",
+      "code": "顧客CD_顧客名",
+      "label": "【顧客CD】顧客名",
+      "noLabel": false,
+      "required": false,
+      "minLength": "",
+      "maxLength": "",
+      "expression": "\"【\"&client_no&\"】\"&client_name",
+      "hideExpression": true,
+      "unique": false,
+      "defaultValue": ""
+    },
+    "associate_name": {
+      "type": "SINGLE_LINE_TEXT",
+      "code": "associate_name",
+      "label": "先方担当者",
+      "noLabel": false,
+      "required": false,
+      "minLength": "",
+      "maxLength": "",
+      "expression": "",
+      "hideExpression": false,
+      "unique": false,
+      "defaultValue": ""
+    },
+    "カテゴリー": {
+      "type": "CATEGORY",
+      "code": "カテゴリー",
+      "label": "カテゴリー",
+      "enabled": false
+    },
+    "history_portal_contract": {
+      "type": "REFERENCE_TABLE",
+      "code": "history_portal_contract",
+      "label": "ソトバコポータル契約一覧",
+      "noLabel": true,
+      "referenceTable": {
+        "relatedApp": {
+          "app": "86",
+          "code": ""
+        },
+        "condition": {
+          "field": "client_name",
+          "relatedField": "cliemt_name"
+        },
+        "filterCond": "",
+        "displayFields": [
+          "portal_contract",
+          "portal_date_contract",
+          "kintone_subdomain",
+          "contract_plan",
+          "billing_cycle"
+        ],
+        "sort": "portal_date_contract desc",
+        "size": "10"
+      }
+    },
+    "billing_mail": {
+      "type": "LINK",
+      "code": "billing_mail",
+      "label": "先方請求先担当者メールアドレス",
+      "noLabel": false,
+      "required": false,
+      "protocol": "MAIL",
+      "minLength": "",
+      "maxLength": "",
+      "unique": false,
+      "defaultValue": ""
+    },
+    "tel": {
+      "type": "LINK",
+      "code": "tel",
+      "label": "電話番号",
+      "noLabel": false,
+      "required": false,
+      "protocol": "CALL",
+      "minLength": "",
+      "maxLength": "",
+      "unique": false,
+      "defaultValue": ""
+    },
+    "client_name": {
+      "type": "SINGLE_LINE_TEXT",
+      "code": "client_name",
+      "label": "クライアント名",
+      "noLabel": false,
+      "required": true,
+      "minLength": "",
+      "maxLength": "64",
+      "expression": "",
+      "hideExpression": false,
+      "unique": true,
+      "defaultValue": ""
+    },
+    "case_history": {
+      "type": "REFERENCE_TABLE",
+      "code": "case_history",
+      "label": "案件履歴",
+      "noLabel": true,
+      "referenceTable": {
+        "relatedApp": {
+          "app": "71",
+          "code": ""
+        },
+        "condition": {
+          "field": "client_name",
+          "relatedField": "client_registered"
+        },
+        "filterCond": "",
+        "displayFields": [
+          "date",
+          "service",
+          "service_unregisterd",
+          "associate",
+          "detail"
+        ],
+        "sort": "service asc, date desc",
+        "size": "10"
+      }
+    },
+    "作業者": {
+      "type": "STATUS_ASSIGNEE",
+      "code": "作業者",
+      "label": "作業者",
+      "enabled": false
+    },
+    "address": {
+      "type": "SINGLE_LINE_TEXT",
+      "code": "address",
+      "label": "住所",
+      "noLabel": false,
+      "required": false,
+      "minLength": "",
+      "maxLength": "",
+      "expression": "",
+      "hideExpression": false,
+      "unique": false,
+      "defaultValue": ""
+    },
+    "作成者": {
+      "type": "CREATOR",
+      "code": "作成者",
+      "label": "作成者",
+      "noLabel": false
+    },
+    "inquiry_history": {
+      "type": "REFERENCE_TABLE",
+      "code": "inquiry_history",
+      "label": "問い合わせ履歴",
+      "noLabel": true,
+      "referenceTable": {
+        "relatedApp": {
+          "app": "72",
+          "code": ""
+        },
+        "condition": {
+          "field": "client_name",
+          "relatedField": "cilent"
+        },
+        "filterCond": "",
+        "displayFields": [
+          "question_date",
+          "service",
+          "status",
+          "inquirer_name",
+          "title",
+          "answer_date",
+          "answer_associate"
+        ],
+        "sort": "question_date desc",
+        "size": "10"
+      }
+    },
+    "admin_mail": {
+      "type": "LINK",
+      "code": "admin_mail",
+      "label": "管理者メールアドレス（ログイン者メールアドレス）",
+      "noLabel": false,
+      "required": false,
+      "protocol": "MAIL",
+      "minLength": "",
+      "maxLength": "",
+      "unique": false,
+      "defaultValue": ""
+    },
+    "postcode": {
+      "type": "SINGLE_LINE_TEXT",
+      "code": "postcode",
+      "label": "郵便番号",
+      "noLabel": false,
+      "required": false,
+      "minLength": "",
+      "maxLength": "",
+      "expression": "",
+      "hideExpression": false,
+      "unique": false,
+      "defaultValue": ""
+    },
+    "client_detail": {
+      "type": "MULTI_LINE_TEXT",
+      "code": "client_detail",
+      "label": "クライアント詳細",
+      "noLabel": false,
+      "required": false,
+      "defaultValue": ""
+    },
+    "billing_name": {
+      "type": "SINGLE_LINE_TEXT",
+      "code": "billing_name",
+      "label": "先方請求先担当者",
+      "noLabel": false,
+      "required": false,
+      "minLength": "",
+      "maxLength": "",
+      "expression": "",
+      "hideExpression": false,
+      "unique": false,
+      "defaultValue": ""
+    },
+    "更新日時": {
+      "type": "UPDATED_TIME",
+      "code": "更新日時",
+      "label": "更新日時",
+      "noLabel": false
+    },
+    "billing_history": {
+      "type": "REFERENCE_TABLE",
+      "code": "billing_history",
+      "label": "請求履歴",
+      "noLabel": true,
+      "referenceTable": {
+        "relatedApp": {
+          "app": "74",
+          "code": ""
+        },
+        "condition": {
+          "field": "client_name",
+          "relatedField": "client_name"
+        },
+        "filterCond": "",
+        "displayFields": [
+          "billing_date",
+          "bill_url",
+          "associate",
+          "billing_memo"
+        ],
+        "sort": "レコード番号 desc",
+        "size": "10"
+      }
+    },
+    "client_no": {
+      "type": "SINGLE_LINE_TEXT",
+      "code": "client_no",
+      "label": "クライアントCD",
+      "noLabel": false,
+      "required": true,
+      "minLength": "",
+      "maxLength": "64",
+      "expression": "",
+      "hideExpression": false,
+      "unique": true,
+      "defaultValue": ""
+    },
+    "associate_mail": {
+      "type": "LINK",
+      "code": "associate_mail",
+      "label": "先方担当者メールアドレス",
+      "noLabel": false,
+      "required": false,
+      "protocol": "MAIL",
+      "minLength": "",
+      "maxLength": "",
+      "unique": false,
+      "defaultValue": ""
+    },
+    "admin_name": {
+      "type": "SINGLE_LINE_TEXT",
+      "code": "admin_name",
+      "label": "管理者名（ログイン者名）",
+      "noLabel": false,
+      "required": false,
+      "minLength": "",
+      "maxLength": "",
+      "expression": "",
+      "hideExpression": false,
+      "unique": false,
+      "defaultValue": ""
+    },
+    "作成日時": {
+      "type": "CREATED_TIME",
+      "code": "作成日時",
+      "label": "作成日時",
+      "noLabel": false
+    },
+    "請求先メールアドレスCC": {
+      "type": "MULTI_LINE_TEXT",
+      "code": "請求先メールアドレスCC",
+      "label": "請求先メールアドレスCC",
+      "noLabel": false,
+      "required": false,
+      "defaultValue": ""
+    }
+  }
+}

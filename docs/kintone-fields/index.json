@@ -1,0 +1,158 @@
+{
+  "generatedAt": "2026-02-14T04:39:05.427Z",
+  "baseUrl": "https://sotobaco.cybozu.com",
+  "apps": [
+    {
+      "id": 31,
+      "name": "組織・グループ・ユーザー情報アプリ",
+      "status": "ok",
+      "revision": "8",
+      "file": "app-31.json",
+      "fieldCount": 11
+    },
+    {
+      "id": 32,
+      "name": "画像保管アプリ",
+      "status": "ok",
+      "revision": "6",
+      "file": "app-32.json",
+      "fieldCount": 9
+    },
+    {
+      "id": 33,
+      "name": "ポータルデザイン設定反映アプリ",
+      "status": "ok",
+      "revision": "183",
+      "file": "app-33.json",
+      "fieldCount": 8
+    },
+    {
+      "id": 34,
+      "name": "全体アナウンス",
+      "status": "ok",
+      "revision": "44",
+      "file": "app-34.json",
+      "fieldCount": 13
+    },
+    {
+      "id": 69,
+      "name": "顧客管理",
+      "status": "ok",
+      "revision": "93",
+      "file": "app-69.json",
+      "fieldCount": 27
+    },
+    {
+      "id": 70,
+      "name": "製品管理",
+      "status": "ok",
+      "revision": "26",
+      "file": "app-70.json",
+      "fieldCount": 14
+    },
+    {
+      "id": 71,
+      "name": "受託案件管理",
+      "status": "ok",
+      "revision": "24",
+      "file": "app-71.json",
+      "fieldCount": 16
+    },
+    {
+      "id": 72,
+      "name": "問い合わせ明細",
+      "status": "ok",
+      "revision": "42",
+      "file": "app-72.json",
+      "fieldCount": 23
+    },
+    {
+      "id": 73,
+      "name": "要望管理",
+      "status": "ok",
+      "revision": "59",
+      "file": "app-73.json",
+      "fieldCount": 19
+    },
+    {
+      "id": 74,
+      "name": "請求管理",
+      "status": "ok",
+      "revision": "148",
+      "file": "app-74.json",
+      "fieldCount": 37
+    },
+    {
+      "id": 75,
+      "name": "リリース履歴",
+      "status": "ok",
+      "revision": "11",
+      "file": "app-75.json",
+      "fieldCount": 14
+    },
+    {
+      "id": 77,
+      "name": "自作プラグイン",
+      "status": "ok",
+      "revision": "9",
+      "file": "app-77.json",
+      "fieldCount": 14
+    },
+    {
+      "id": 86,
+      "name": "ソトバコポータル契約管理",
+      "status": "ok",
+      "revision": "35",
+      "file": "app-86.json",
+      "fieldCount": 19
+    },
+    {
+      "id": 87,
+      "name": "代理店管理",
+      "status": "ok",
+      "revision": "11",
+      "file": "app-87.json",
+      "fieldCount": 15
+    },
+    {
+      "id": 88,
+      "name": "名刺管理",
+      "status": "ok",
+      "revision": "18",
+      "file": "app-88.json",
+      "fieldCount": 19
+    },
+    {
+      "id": 90,
+      "name": "Btone契約管理",
+      "status": "ok",
+      "revision": "38",
+      "file": "app-90.json",
+      "fieldCount": 19
+    },
+    {
+      "id": 91,
+      "name": "システム保守管理",
+      "status": "ok",
+      "revision": "6",
+      "file": "app-91.json",
+      "fieldCount": 19
+    },
+    {
+      "id": 93,
+      "name": "問い合わせ管理",
+      "status": "ok",
+      "revision": "46",
+      "file": "app-93.json",
+      "fieldCount": 19
+    },
+    {
+      "id": 94,
+      "name": "問い合わせ明細",
+      "status": "ok",
+      "revision": "44",
+      "file": "app-94.json",
+      "fieldCount": 16
+    }
+  ]
+}

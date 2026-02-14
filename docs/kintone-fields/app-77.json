@@ -1,0 +1,123 @@
+{
+  "app": {
+    "id": 77,
+    "name": "自作プラグイン"
+  },
+  "fetchedAt": "2026-02-14T04:39:08.356Z",
+  "revision": "9",
+  "properties": {
+    "zip": {
+      "type": "FILE",
+      "code": "zip",
+      "label": "ZIPファイル",
+      "noLabel": false,
+      "required": false,
+      "thumbnailSize": "150"
+    },
+    "no": {
+      "type": "NUMBER",
+      "code": "no",
+      "label": "No",
+      "noLabel": false,
+      "required": true,
+      "minValue": "",
+      "maxValue": "",
+      "digit": false,
+      "unique": true,
+      "defaultValue": "",
+      "displayScale": "",
+      "unit": "",
+      "unitPosition": "BEFORE"
+    },
+    "レコード番号": {
+      "type": "RECORD_NUMBER",
+      "code": "レコード番号",
+      "label": "レコード番号",
+      "noLabel": false
+    },
+    "作業者": {
+      "type": "STATUS_ASSIGNEE",
+      "code": "作業者",
+      "label": "作業者",
+      "enabled": false
+    },
+    "更新者": {
+      "type": "MODIFIER",
+      "code": "更新者",
+      "label": "更新者",
+      "noLabel": false
+    },
+    "作成者": {
+      "type": "CREATOR",
+      "code": "作成者",
+      "label": "作成者",
+      "noLabel": false
+    },
+    "icon": {
+      "type": "FILE",
+      "code": "icon",
+      "label": "アイコン",
+      "noLabel": false,
+      "required": false,
+      "thumbnailSize": "150"
+    },
+    "ステータス": {
+      "type": "STATUS",
+      "code": "ステータス",
+      "label": "ステータス",
+      "enabled": false
+    },
+    "description": {
+      "type": "MULTI_LINE_TEXT",
+      "code": "description",
+      "label": "説明",
+      "noLabel": false,
+      "required": false,
+      "defaultValue": ""
+    },
+    "更新日時": {
+      "type": "UPDATED_TIME",
+      "code": "更新日時",
+      "label": "更新日時",
+      "noLabel": false
+    },
+    "カテゴリー": {
+      "type": "CATEGORY",
+      "code": "カテゴリー",
+      "label": "カテゴリー",
+      "enabled": false
+    },
+    "name": {
+      "type": "SINGLE_LINE_TEXT",
+      "code": "name",
+      "label": "名称",
+      "noLabel": false,
+      "required": true,
+      "minLength": "",
+      "maxLength": "64",
+      "expression": "",
+      "hideExpression": false,
+      "unique": true,
+      "defaultValue": ""
+    },
+    "id": {
+      "type": "SINGLE_LINE_TEXT",
+      "code": "id",
+      "label": "プラグインID",
+      "noLabel": false,
+      "required": true,
+      "minLength": "",
+      "maxLength": "64",
+      "expression": "",
+      "hideExpression": false,
+      "unique": true,
+      "defaultValue": ""
+    },
+    "作成日時": {
+      "type": "CREATED_TIME",
+      "code": "作成日時",
+      "label": "作成日時",
+      "noLabel": false
+    }
+  }
+}

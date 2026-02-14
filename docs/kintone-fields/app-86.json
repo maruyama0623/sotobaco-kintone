@@ -1,0 +1,238 @@
+{
+  "app": {
+    "id": 86,
+    "name": "ソトバコポータル契約管理"
+  },
+  "fetchedAt": "2026-02-14T04:39:08.444Z",
+  "revision": "35",
+  "properties": {
+    "cliemt_name": {
+      "type": "SINGLE_LINE_TEXT",
+      "code": "cliemt_name",
+      "label": "顧客名",
+      "noLabel": false,
+      "required": true,
+      "lookup": {
+        "relatedApp": {
+          "app": "69",
+          "code": ""
+        },
+        "relatedKeyField": "client_name",
+        "fieldMappings": [],
+        "lookupPickerFields": [],
+        "filterCond": "",
+        "sort": "レコード番号 desc"
+      }
+    },
+    "contract_plan": {
+      "type": "DROP_DOWN",
+      "code": "contract_plan",
+      "label": "契約プラン",
+      "noLabel": false,
+      "required": false,
+      "options": {
+        "プロプラン": {
+          "label": "プロプラン",
+          "index": "3"
+        },
+        "ライトプラン": {
+          "label": "ライトプラン",
+          "index": "1"
+        },
+        "グロープラン": {
+          "label": "グロープラン",
+          "index": "2"
+        },
+        "フリープラン": {
+          "label": "フリープラン",
+          "index": "0"
+        }
+      },
+      "defaultValue": ""
+    },
+    "レコード番号": {
+      "type": "RECORD_NUMBER",
+      "code": "レコード番号",
+      "label": "レコード番号",
+      "noLabel": false
+    },
+    "作業者": {
+      "type": "STATUS_ASSIGNEE",
+      "code": "作業者",
+      "label": "作業者",
+      "enabled": false
+    },
+    "portal_date_contract": {
+      "type": "DATE",
+      "code": "portal_date_contract",
+      "label": "契約日",
+      "noLabel": false,
+      "required": false,
+      "unique": false,
+      "defaultValue": "",
+      "defaultNowValue": false
+    },
+    "agent_name": {
+      "type": "SINGLE_LINE_TEXT",
+      "code": "agent_name",
+      "label": "代理店名",
+      "noLabel": false,
+      "required": false,
+      "lookup": {
+        "relatedApp": {
+          "app": "87",
+          "code": ""
+        },
+        "relatedKeyField": "agency_name",
+        "fieldMappings": [],
+        "lookupPickerFields": [],
+        "filterCond": "",
+        "sort": "レコード番号 desc"
+      }
+    },
+    "更新者": {
+      "type": "MODIFIER",
+      "code": "更新者",
+      "label": "更新者",
+      "noLabel": false
+    },
+    "作成者": {
+      "type": "CREATOR",
+      "code": "作成者",
+      "label": "作成者",
+      "noLabel": false
+    },
+    "date_cancel": {
+      "type": "DATE",
+      "code": "date_cancel",
+      "label": "解約・プラン変更日",
+      "noLabel": false,
+      "required": false,
+      "unique": false,
+      "defaultValue": "",
+      "defaultNowValue": false
+    },
+    "ステータス": {
+      "type": "STATUS",
+      "code": "ステータス",
+      "label": "ステータス",
+      "enabled": false
+    },
+    "associate_name": {
+      "type": "SINGLE_LINE_TEXT",
+      "code": "associate_name",
+      "label": "先方担当者名",
+      "noLabel": false,
+      "required": false,
+      "minLength": "",
+      "maxLength": "",
+      "expression": "",
+      "hideExpression": false,
+      "unique": false,
+      "defaultValue": ""
+    },
+    "更新日時": {
+      "type": "UPDATED_TIME",
+      "code": "更新日時",
+      "label": "更新日時",
+      "noLabel": false
+    },
+    "カテゴリー": {
+      "type": "CATEGORY",
+      "code": "カテゴリー",
+      "label": "カテゴリー",
+      "enabled": false
+    },
+    "associate_mail": {
+      "type": "LINK",
+      "code": "associate_mail",
+      "label": "先方担当者メールアドレス",
+      "noLabel": false,
+      "required": false,
+      "protocol": "MAIL",
+      "minLength": "",
+      "maxLength": "",
+      "unique": false,
+      "defaultValue": ""
+    },
+    "billing_cycle": {
+      "type": "RADIO_BUTTON",
+      "code": "billing_cycle",
+      "label": "支払サイクル",
+      "noLabel": false,
+      "required": true,
+      "options": {
+        "年額": {
+          "label": "年額",
+          "index": "1"
+        },
+        "月額": {
+          "label": "月額",
+          "index": "0"
+        }
+      },
+      "defaultValue": "月額",
+      "align": "HORIZONTAL"
+    },
+    "portal_contract": {
+      "type": "RADIO_BUTTON",
+      "code": "portal_contract",
+      "label": "契約状況",
+      "noLabel": false,
+      "required": true,
+      "options": {
+        "解約・プラン変更": {
+          "label": "解約・プラン変更",
+          "index": "2"
+        },
+        "契約中": {
+          "label": "契約中",
+          "index": "1"
+        },
+        "無償提供（代理店）": {
+          "label": "無償提供（代理店）",
+          "index": "4"
+        },
+        "お試し契約中": {
+          "label": "お試し契約中",
+          "index": "0"
+        },
+        "お試し期限切れ": {
+          "label": "お試し期限切れ",
+          "index": "3"
+        }
+      },
+      "defaultValue": "契約中",
+      "align": "HORIZONTAL"
+    },
+    "date_traiallimit": {
+      "type": "DATE",
+      "code": "date_traiallimit",
+      "label": "お試し期限",
+      "noLabel": false,
+      "required": false,
+      "unique": false,
+      "defaultValue": "",
+      "defaultNowValue": false
+    },
+    "作成日時": {
+      "type": "CREATED_TIME",
+      "code": "作成日時",
+      "label": "作成日時",
+      "noLabel": false
+    },
+    "kintone_subdomain": {
+      "type": "SINGLE_LINE_TEXT",
+      "code": "kintone_subdomain",
+      "label": "kintoneサブドメイン",
+      "noLabel": false,
+      "required": false,
+      "minLength": "",
+      "maxLength": "",
+      "expression": "",
+      "hideExpression": false,
+      "unique": false,
+      "defaultValue": ""
+    }
+  }
+}

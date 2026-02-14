@@ -1,0 +1,182 @@
+{
+  "app": {
+    "id": 70,
+    "name": "製品管理"
+  },
+  "fetchedAt": "2026-02-14T04:39:07.161Z",
+  "revision": "26",
+  "properties": {
+    "サービス状況": {
+      "type": "DROP_DOWN",
+      "code": "サービス状況",
+      "label": "サービス状況",
+      "noLabel": false,
+      "required": false,
+      "options": {
+        "提供中": {
+          "label": "提供中",
+          "index": "0"
+        },
+        "停止（中止）": {
+          "label": "停止（中止）",
+          "index": "2"
+        },
+        "開発中": {
+          "label": "開発中",
+          "index": "1"
+        }
+      },
+      "defaultValue": ""
+    },
+    "レコード番号": {
+      "type": "RECORD_NUMBER",
+      "code": "レコード番号",
+      "label": "レコード番号",
+      "noLabel": false
+    },
+    "作業者": {
+      "type": "STATUS_ASSIGNEE",
+      "code": "作業者",
+      "label": "作業者",
+      "enabled": false
+    },
+    "関連レコード一覧_0": {
+      "type": "REFERENCE_TABLE",
+      "code": "関連レコード一覧_0",
+      "label": "リリース履歴",
+      "noLabel": true,
+      "referenceTable": {
+        "relatedApp": {
+          "app": "75",
+          "code": ""
+        },
+        "condition": {
+          "field": "service_name",
+          "relatedField": "service"
+        },
+        "filterCond": "",
+        "displayFields": [
+          "release_date",
+          "title"
+        ],
+        "sort": "レコード番号 desc",
+        "size": "10"
+      }
+    },
+    "更新者": {
+      "type": "MODIFIER",
+      "code": "更新者",
+      "label": "更新者",
+      "noLabel": false
+    },
+    "service_name": {
+      "type": "SINGLE_LINE_TEXT",
+      "code": "service_name",
+      "label": "サービス名",
+      "noLabel": false,
+      "required": false,
+      "minLength": "",
+      "maxLength": "",
+      "expression": "",
+      "hideExpression": false,
+      "unique": false,
+      "defaultValue": ""
+    },
+    "作成者": {
+      "type": "CREATOR",
+      "code": "作成者",
+      "label": "作成者",
+      "noLabel": false
+    },
+    "inquiry_history": {
+      "type": "REFERENCE_TABLE",
+      "code": "inquiry_history",
+      "label": "問い合わせ履歴",
+      "noLabel": true,
+      "referenceTable": {
+        "relatedApp": {
+          "app": "72",
+          "code": ""
+        },
+        "condition": {
+          "field": "service_name",
+          "relatedField": "service"
+        },
+        "filterCond": "",
+        "displayFields": [
+          "question_date",
+          "status",
+          "cilent",
+          "client_unregistered",
+          "title"
+        ],
+        "sort": "question_date desc",
+        "size": "10"
+      }
+    },
+    "service_num": {
+      "type": "NUMBER",
+      "code": "service_num",
+      "label": "管理No.",
+      "noLabel": false,
+      "required": true,
+      "minValue": "",
+      "maxValue": "",
+      "digit": false,
+      "unique": false,
+      "defaultValue": "",
+      "displayScale": "",
+      "unit": "",
+      "unitPosition": "BEFORE"
+    },
+    "ステータス": {
+      "type": "STATUS",
+      "code": "ステータス",
+      "label": "ステータス",
+      "enabled": false
+    },
+    "needs_history": {
+      "type": "REFERENCE_TABLE",
+      "code": "needs_history",
+      "label": "要望履歴",
+      "noLabel": true,
+      "referenceTable": {
+        "relatedApp": {
+          "app": "73",
+          "code": ""
+        },
+        "condition": {
+          "field": "service_name",
+          "relatedField": "service_name"
+        },
+        "filterCond": "",
+        "displayFields": [
+          "作成日時",
+          "title",
+          "status",
+          "priority"
+        ],
+        "sort": "status asc",
+        "size": "10"
+      }
+    },
+    "更新日時": {
+      "type": "UPDATED_TIME",
+      "code": "更新日時",
+      "label": "更新日時",
+      "noLabel": false
+    },
+    "カテゴリー": {
+      "type": "CATEGORY",
+      "code": "カテゴリー",
+      "label": "カテゴリー",
+      "enabled": false
+    },
+    "作成日時": {
+      "type": "CREATED_TIME",
+      "code": "作成日時",
+      "label": "作成日時",
+      "noLabel": false
+    }
+  }
+}

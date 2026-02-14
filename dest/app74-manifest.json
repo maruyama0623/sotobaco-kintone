@@ -1,0 +1,14 @@
+{
+  "app": "74",
+  "scope": "ALL",
+  "desktop": {
+    "js": [
+      "src/app74-search.js"
+    ],
+    "css": []
+  },
+  "mobile": {
+    "js": [],
+    "css": []
+  }
+}

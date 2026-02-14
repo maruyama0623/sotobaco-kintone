@@ -1,0 +1,25 @@
+{
+  "name": "sotobaco-kintone",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "upload:69": "export $(cat .env | xargs) && kintone-customize-uploader dest/app69-manifest.json --base-url \"$KINTONE_BASE_URL\" --username \"$KINTONE_USERNAME\" --password \"$KINTONE_PASSWORD\"",
+    "watch:69": "export $(cat .env | xargs) && kintone-customize-uploader dest/app69-manifest.json --base-url \"$KINTONE_BASE_URL\" --username \"$KINTONE_USERNAME\" --password \"$KINTONE_PASSWORD\" --watch",
+    "upload:93": "export $(cat .env | xargs) && kintone-customize-uploader dest/app93-manifest.json --base-url \"$KINTONE_BASE_URL\" --username \"$KINTONE_USERNAME\" --password \"$KINTONE_PASSWORD\"",
+    "watch:93": "export $(cat .env | xargs) && kintone-customize-uploader dest/app93-manifest.json --base-url \"$KINTONE_BASE_URL\" --username \"$KINTONE_USERNAME\" --password \"$KINTONE_PASSWORD\" --watch",
+    "client-no:resequence:69": "export $(cat .env | xargs) && node scripts/resequence-client-no.js",
+    "client-no:resequence:69:execute": "export $(cat .env | xargs) && node scripts/resequence-client-no.js --execute",
+    "upload:74": "export $(cat .env | xargs) && kintone-customize-uploader dest/app74-manifest.json --base-url \"$KINTONE_BASE_URL\" --username \"$KINTONE_USERNAME\" --password \"$KINTONE_PASSWORD\"",
+    "watch:74": "export $(cat .env | xargs) && kintone-customize-uploader dest/app74-manifest.json --base-url \"$KINTONE_BASE_URL\" --username \"$KINTONE_USERNAME\" --password \"$KINTONE_PASSWORD\" --watch",
+    "fields:sync": "export $(cat .env | xargs) && node scripts/sync-kintone-fields.js",
+    "fields:sync:69": "export $(cat .env | xargs) && node scripts/sync-kintone-fields.js --app 69",
+    "fields:sync:74": "export $(cat .env | xargs) && node scripts/sync-kintone-fields.js --app 74"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@kintone/customize-uploader": "^9.0.2"
+  }
+}

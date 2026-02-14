@@ -1,0 +1,380 @@
+{
+  "app": {
+    "id": 73,
+    "name": "要望管理"
+  },
+  "fetchedAt": "2026-02-14T04:39:07.865Z",
+  "revision": "59",
+  "properties": {
+    "テーブル": {
+      "type": "SUBTABLE",
+      "code": "テーブル",
+      "noLabel": true,
+      "label": "テーブル",
+      "fields": {
+        "inquire_count_test": {
+          "type": "CALC",
+          "code": "inquire_count_test",
+          "label": "カウント用（テスト）",
+          "noLabel": false,
+          "required": false,
+          "expression": "IF(OR(会社名_顧客登録済み!=\"\",会社名_顧客未登録分!=\"\"),1,0)",
+          "format": "NUMBER",
+          "displayScale": "",
+          "hideExpression": false,
+          "unit": "",
+          "unitPosition": "BEFORE"
+        },
+        "会社名_顧客登録済み": {
+          "type": "SINGLE_LINE_TEXT",
+          "code": "会社名_顧客登録済み",
+          "label": "会社名（顧客登録済み）",
+          "noLabel": false,
+          "required": false,
+          "lookup": {
+            "relatedApp": {
+              "app": "69",
+              "code": ""
+            },
+            "relatedKeyField": "client_name",
+            "fieldMappings": [],
+            "lookupPickerFields": [],
+            "filterCond": "",
+            "sort": "レコード番号 desc"
+          }
+        },
+        "会社名_顧客未登録分": {
+          "type": "SINGLE_LINE_TEXT",
+          "code": "会社名_顧客未登録分",
+          "label": "会社名（顧客未登録分）",
+          "noLabel": false,
+          "required": false,
+          "minLength": "",
+          "maxLength": "",
+          "expression": "",
+          "hideExpression": false,
+          "unique": false,
+          "defaultValue": ""
+        },
+        "詳細": {
+          "type": "RICH_TEXT",
+          "code": "詳細",
+          "label": "詳細",
+          "noLabel": false,
+          "required": false,
+          "defaultValue": ""
+        },
+        "日付": {
+          "type": "DATE",
+          "code": "日付",
+          "label": "日付",
+          "noLabel": false,
+          "required": false,
+          "unique": false,
+          "defaultValue": "",
+          "defaultNowValue": true
+        }
+      }
+    },
+    "レコード番号": {
+      "type": "RECORD_NUMBER",
+      "code": "レコード番号",
+      "label": "レコード番号",
+      "noLabel": false
+    },
+    "作業者": {
+      "type": "STATUS_ASSIGNEE",
+      "code": "作業者",
+      "label": "作業者",
+      "enabled": true
+    },
+    "更新者": {
+      "type": "MODIFIER",
+      "code": "更新者",
+      "label": "更新者",
+      "noLabel": false
+    },
+    "service_name": {
+      "type": "SINGLE_LINE_TEXT",
+      "code": "service_name",
+      "label": "対象サービス",
+      "noLabel": false,
+      "required": true,
+      "lookup": {
+        "relatedApp": {
+          "app": "70",
+          "code": ""
+        },
+        "relatedKeyField": "service_name",
+        "fieldMappings": [],
+        "lookupPickerFields": [],
+        "filterCond": "",
+        "sort": "レコード番号 desc"
+      }
+    },
+    "作成者": {
+      "type": "CREATOR",
+      "code": "作成者",
+      "label": "作成者",
+      "noLabel": false
+    },
+    "ステータス": {
+      "type": "STATUS",
+      "code": "ステータス",
+      "label": "ステータス",
+      "enabled": true
+    },
+    "memo": {
+      "type": "MULTI_LINE_TEXT",
+      "code": "memo",
+      "label": "備考",
+      "noLabel": false,
+      "required": false,
+      "defaultValue": ""
+    },
+    "title": {
+      "type": "SINGLE_LINE_TEXT",
+      "code": "title",
+      "label": "タイトル",
+      "noLabel": false,
+      "required": true,
+      "minLength": "",
+      "maxLength": "",
+      "expression": "",
+      "hideExpression": false,
+      "unique": false,
+      "defaultValue": ""
+    },
+    "priority": {
+      "type": "DROP_DOWN",
+      "code": "priority",
+      "label": "重要度",
+      "noLabel": false,
+      "required": false,
+      "options": {
+        "A: 至急対応": {
+          "label": "A: 至急対応",
+          "index": "0"
+        },
+        "C: できる限り": {
+          "label": "C: できる限り",
+          "index": "2"
+        },
+        "B: なる早": {
+          "label": "B: なる早",
+          "index": "1"
+        },
+        "D: いつかやる": {
+          "label": "D: いつかやる",
+          "index": "3"
+        },
+        "E: 対応見送り": {
+          "label": "E: 対応見送り",
+          "index": "4"
+        }
+      },
+      "defaultValue": "C: できる限り"
+    },
+    "更新日時": {
+      "type": "UPDATED_TIME",
+      "code": "更新日時",
+      "label": "更新日時",
+      "noLabel": false
+    },
+    "inquire_total": {
+      "type": "CALC",
+      "code": "inquire_total",
+      "label": "要望数",
+      "noLabel": false,
+      "required": false,
+      "expression": "SUM(SUM(inquire_count_test), SUM(mail_inqure_count_test))",
+      "format": "NUMBER",
+      "displayScale": "",
+      "hideExpression": false,
+      "unit": "",
+      "unitPosition": "BEFORE"
+    },
+    "カテゴリー": {
+      "type": "CATEGORY",
+      "code": "カテゴリー",
+      "label": "カテゴリー",
+      "enabled": false
+    },
+    "release_date": {
+      "type": "DATE",
+      "code": "release_date",
+      "label": "リリース予定日/リリース日",
+      "noLabel": false,
+      "required": false,
+      "unique": false,
+      "defaultValue": "",
+      "defaultNowValue": false
+    },
+    "related_question": {
+      "type": "SUBTABLE",
+      "code": "related_question",
+      "noLabel": true,
+      "label": "関連問い合わせ",
+      "fields": {
+        "client_unregistered": {
+          "type": "SINGLE_LINE_TEXT",
+          "code": "client_unregistered",
+          "label": "問い合わせ者（未登録）",
+          "noLabel": false,
+          "required": false,
+          "minLength": "",
+          "maxLength": "",
+          "expression": "",
+          "hideExpression": false,
+          "unique": false,
+          "defaultValue": ""
+        },
+        "mail_inqure_count_test": {
+          "type": "CALC",
+          "code": "mail_inqure_count_test",
+          "label": "カウント用（テスト）",
+          "noLabel": false,
+          "required": false,
+          "expression": "IF(question_title!=\"\",1,0)",
+          "format": "NUMBER",
+          "displayScale": "",
+          "hideExpression": false,
+          "unit": "",
+          "unitPosition": "BEFORE"
+        },
+        "client": {
+          "type": "SINGLE_LINE_TEXT",
+          "code": "client",
+          "label": "問い合わせ者（登録済み）",
+          "noLabel": false,
+          "required": false,
+          "minLength": "",
+          "maxLength": "",
+          "expression": "",
+          "hideExpression": false,
+          "unique": false,
+          "defaultValue": ""
+        },
+        "question_title": {
+          "type": "SINGLE_LINE_TEXT",
+          "code": "question_title",
+          "label": "問い合わせタイトル",
+          "noLabel": false,
+          "required": false,
+          "lookup": {
+            "relatedApp": {
+              "app": "72",
+              "code": ""
+            },
+            "relatedKeyField": "title",
+            "fieldMappings": [
+              {
+                "field": "client",
+                "relatedField": "cilent"
+              },
+              {
+                "field": "client_unregistered",
+                "relatedField": "client_unregistered"
+              }
+            ],
+            "lookupPickerFields": [],
+            "filterCond": "",
+            "sort": "レコード番号 desc"
+          }
+        }
+      }
+    },
+    "consider_user": {
+      "type": "USER_SELECT",
+      "code": "consider_user",
+      "label": "作業者（確認・検討者）",
+      "noLabel": false,
+      "required": true,
+      "entities": [
+        {
+          "type": "USER",
+          "code": "maruyama.tomohiro@sotobaco.co.jp"
+        },
+        {
+          "type": "USER",
+          "code": "matsumoto.shiho@sotobaco.co.jp"
+        },
+        {
+          "type": "USER",
+          "code": "matsushita.akira@sotobaco.co.jp"
+        },
+        {
+          "type": "USER",
+          "code": "sano.shunsuke@sotobaco.co.jp"
+        },
+        {
+          "type": "USER",
+          "code": "nakashima.kaoru@sotobaco.co.jp"
+        }
+      ],
+      "defaultValue": []
+    },
+    "work_history": {
+      "type": "SUBTABLE",
+      "code": "work_history",
+      "noLabel": false,
+      "label": "対応履歴",
+      "fields": {
+        "record_date": {
+          "type": "DATE",
+          "code": "record_date",
+          "label": "日付",
+          "noLabel": false,
+          "required": false,
+          "unique": false,
+          "defaultValue": "",
+          "defaultNowValue": true
+        },
+        "work_detail": {
+          "type": "RICH_TEXT",
+          "code": "work_detail",
+          "label": "詳細",
+          "noLabel": false,
+          "required": false,
+          "defaultValue": ""
+        }
+      }
+    },
+    "作成日時": {
+      "type": "CREATED_TIME",
+      "code": "作成日時",
+      "label": "作成日時",
+      "noLabel": false
+    },
+    "status": {
+      "type": "DROP_DOWN",
+      "code": "status",
+      "label": "ステータス",
+      "noLabel": false,
+      "required": false,
+      "options": {
+        "検討中": {
+          "label": "検討中",
+          "index": "1"
+        },
+        "対応済み": {
+          "label": "対応済み",
+          "index": "4"
+        },
+        "検討済み（対応予定）": {
+          "label": "検討済み（対応予定）",
+          "index": "3"
+        },
+        "未検討": {
+          "label": "未検討",
+          "index": "0"
+        },
+        "検討済み（対応見送り）": {
+          "label": "検討済み（対応見送り）",
+          "index": "2"
+        }
+      },
+      "defaultValue": "未検討"
+    }
+  }
+}
